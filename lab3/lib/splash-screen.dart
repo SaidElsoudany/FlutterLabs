@@ -1,8 +1,26 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class splashScreen extends StatelessWidget {
+import 'login-screen.dart';
+
+class splashScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return Splash();
+  }
+}
+
+class Splash extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
+    Timer(
+        Duration(seconds: 3),
+            () =>
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) => loginScreen())
+            )
+    );
     return Stack(
       children: [
         Positioned.fill(
@@ -43,7 +61,9 @@ class splashScreen extends StatelessWidget {
                     decoration: TextDecoration.none,
                   ),
                 ),
-                Spacer(flex: 40,),
+                Spacer(
+                  flex: 40,
+                ),
                 Container(
                   height: 40,
                   width: 40,
@@ -59,9 +79,9 @@ class splashScreen extends StatelessWidget {
                     decoration: TextDecoration.none,
                   ),
                 ),
-                Spacer(flex: 10,)
-
-
+                Spacer(
+                  flex: 10,
+                )
               ],
             ),
           ),

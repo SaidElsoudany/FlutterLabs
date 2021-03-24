@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lab3/details-screen.dart';
+
+import 'login-screen.dart';
 
 class signupScreen extends StatefulWidget {
   @override
@@ -12,25 +15,29 @@ class signupState extends State<StatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-
-      resizeToAvoidBottomPadding: false,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Container(
+          child: ListView(
             children: [
+              SizedBox(
+                height: 30,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Login",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25,
-                      color: Colors.black,
-                      decoration: TextDecoration.none,
+                  InkWell(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                        color: Colors.grey,
+                        decoration: TextDecoration.none,
+                      ),
                     ),
                   ),
                   Text(
@@ -38,7 +45,7 @@ class signupState extends State<StatefulWidget> {
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 25,
-                      color: Colors.grey,
+                      color: Colors.black,
                       decoration: TextDecoration.none,
                     ),
                   )
@@ -56,13 +63,27 @@ class signupState extends State<StatefulWidget> {
                 ),
                 alignment: Alignment.center,
               ),
+              SizedBox(
+                height: 30,
+              ),
               Container(
                 width: 300,
                 child: TextField(
                   style: TextStyle(color: Colors.black45, fontSize: 20),
                   cursorColor: Colors.grey,
                   decoration: InputDecoration(
-                    hintText: "Username or Email Address",
+                    hintText: "Email Address",
+                  ),
+                  maxLines: 1,
+                ),
+              ),
+              Container(
+                width: 300,
+                child: TextField(
+                  style: TextStyle(color: Colors.black45, fontSize: 20),
+                  cursorColor: Colors.grey,
+                  decoration: InputDecoration(
+                    hintText: "Username",
                   ),
                   maxLines: 1,
                 ),
@@ -92,97 +113,78 @@ class signupState extends State<StatefulWidget> {
                   maxLines: 1,
                 ),
               ),
-              SizedBox(height: 15),
               Container(
-                width: double.infinity,
-                child: Text(
-                  "Forget Password?",
-                  textAlign: TextAlign.end,
-                  style: TextStyle(color: Colors.grey),
+                width: 300,
+                child: TextField(
+                  obscureText: _isObscure,
+                  style: TextStyle(
+                    color: Colors.black45,
+                    fontSize: 20,
+                  ),
+                  cursorColor: Colors.grey,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: InputDecoration(
+                    hintText: "Confirm Password",
+                    suffixIcon: IconButton(
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        }),
+                  ),
+                  maxLines: 1,
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 40,
               ),
               Container(
-                width: 300,
+                width: 250,
                 child: ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => detailsScreen()));
+                  },
                     child: Text(
-                      "\u2713 LOGIN",
+                      "\u2713 Sign Up",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     style: ButtonStyle(
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.blue),
+                      MaterialStateProperty.all<Color>(Colors.blue),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey),
+                      MaterialStateProperty.all<Color>(Colors.grey),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(color: Colors.red))),
                     )),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't Have an account?"),
                   Text(
-                    "Register",
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
+                    "Already have an account?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.grey),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "Continue With",
-                style: TextStyle(
-                    color: Colors.black38,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/google.png"),
-                      ),
-                      shape: BoxShape.circle,
-                      color: Colors.white,
+                  InkWell(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Login",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey,fontWeight:FontWeight.w900),
                     ),
-                    alignment: Alignment.center,
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage("assets/images/facebook.png"),
-                      ),
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                    ),
-                    alignment: Alignment.center,
-                  ),
+
                 ],
+
               ),
               SizedBox(
                 height: 30,

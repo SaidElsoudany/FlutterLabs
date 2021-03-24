@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lab3/details-screen.dart';
+import 'package:lab3/signup-screen.dart';
 
 class loginScreen extends StatefulWidget {
   @override
@@ -16,8 +18,6 @@ class loginState extends State<StatefulWidget> {
         padding: const EdgeInsets.all(20.0),
         child: Container(
           child: ListView(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 height: 30,
@@ -34,13 +34,19 @@ class loginState extends State<StatefulWidget> {
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  Text(
-                    "Sign Up",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25,
-                      color: Colors.grey,
-                      decoration: TextDecoration.none,
+
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (_) => signupScreen()));
+                    },
+                    child: Text(
+                      "SignUp",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                        color: Colors.grey,
+                        decoration: TextDecoration.none,
+                      ),
                     ),
                   )
                 ],
@@ -111,6 +117,9 @@ class loginState extends State<StatefulWidget> {
               Container(
                 width: 300,
                 child: ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => detailsScreen()));
+                  },
                     child: Text(
                       "\u2713 LOGIN",
                       style:
@@ -134,11 +143,18 @@ class loginState extends State<StatefulWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Don't Have an account?"),
-                  Text(
-                    "Register",
-                    style: TextStyle(
-                        color: Colors.grey, fontWeight: FontWeight.bold),
-                  ),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => signupScreen()));
+                      },
+                      child: new Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          "Register",
+                          style: TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.bold),
+                        ),
+                      ))
                 ],
               ),
               SizedBox(
